@@ -1,0 +1,6 @@
+machine:
+  environment:
+    AWS_ACCESS_KEY_ID: invalid
+    AWS_SECRET_ACCESS_KEY: invalid
+    AWS_SESSION_TOKEN: invalid
+    AWS_DEFAULT_REGION: us-west-2
