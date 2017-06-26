@@ -30,3 +30,10 @@ Return None if param does not exist instead of raising Boto3 ClientError:
 >>> print(secret.value)
 None
 ```
+
+Return a default value (if default is anything besides None, this will also prevent Boto3 errors):
+```python
+>>> secret = SSMParam("snoring.guys.bed", default="Charlie's Desk")
+>>> print(secret.value)
+"Charlie's desk"
+```

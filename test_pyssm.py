@@ -5,6 +5,7 @@ from botocore.stub import Stubber
 from botocore.exceptions import ClientError
 from freezegun import freeze_time
 from pyssm import SSMParam
+from os import putenv
 
 
 class TestSSMParam(unittest.TestCase):
@@ -13,6 +14,10 @@ class TestSSMParam(unittest.TestCase):
         self.stub_param("foobar")
         self.add_stub_response("baz")
         self.assertEqual("baz", self.get_stubbed_param_value())
+
+    def test_default(self):
+        envParam = SSMParam("baz", default="foo")
+        self.assertEqual("foo", envParam.value)
 
     def test_caching(self):
         ms_to_wait = randint(1, 100000) * 1000

@@ -1,16 +1,18 @@
 import boto3
 from botocore.exceptions import ClientError
 from time import time
+from os import getenv
 
 
 class SSMParam(object):
     _value = None
-    expires_at = float('inf')
     ssm = boto3.client('ssm')
+    expires_at = float('inf')
 
-    def __init__(self, name, cache_for_ms=None, raise_if_null=True):
+    def __init__(self, name, cache_for_ms=None, raise_if_null=True, default=None):
         self.name = name
         self.cache_for_ms = cache_for_ms
+        self.default = default
         self.raise_if_null = raise_if_null
 
     @property
@@ -28,7 +30,7 @@ class SSMParam(object):
         try:
             return self.ssm.get_parameter(Name=self.name, WithDecryption=True)["Parameter"]["Value"]
         except ClientError as e:
-            if self.raise_if_null:
+            if self.default is None and self.raise_if_null:
                 raise e
             else:
-                return None
+                return self.default

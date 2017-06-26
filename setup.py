@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='pyssm',
+    name='sca-pyssm',
     version='0.1',
     packages=find_packages(),
     url='https://github.com/Tesla-SCA/pyssm',
@@ -9,5 +9,6 @@ setup(
     author='Landon Mossburg',
     author_email='lmossburg@tesla.com',
     description='Provides a simple wrapper for getting, working with, and refreshing ssm_params',
-    install_requires=["boto3"]
+    install_requires=["boto3"],
+    download_url = 'https://github.com/Tesla-SCA/pyssm/archive/0.1.tar.gz', 
 )
