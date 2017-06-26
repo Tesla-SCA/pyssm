@@ -1,12 +1,15 @@
 import boto3
 from botocore.exceptions import ClientError
 from time import time
-from os import getenv
 
 
 class SSMParam(object):
     _value = None
-    ssm = boto3.client('ssm')
+    try:
+        ssm = boto3.client('ssm')
+    except ClientError as e:
+        print("WARNING: AWS credentials not set. All calls will error or return the default argument if given.")
+        ssm = None
     expires_at = float('inf')
 
     def __init__(self, name, cache_for_ms=None, raise_if_null=True, default=None):
