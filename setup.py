@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='sca-pyssm',
-    version='0.2.3',
+    name='pyssm-sca',
+    version='0.2.4',
     packages=find_packages(),
     url='https://github.com/Tesla-SCA/pyssm',
     license='',
